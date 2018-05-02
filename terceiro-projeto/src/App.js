@@ -18,7 +18,7 @@ class App extends Component {
     this.state = {
       bla: true,
       nome: "mariana",
-      bc: "",
+      bc: [],
     }
   }
 
@@ -27,7 +27,8 @@ class App extends Component {
       bla: !this.state.bla,
     });
     axios.get('http://localhost:5000/')
-      .then(response => this.steState({bc: response.data.index}))
+      .then(response => this.setState(console.log(response.data)))
+      // OLHAR ISSO https://stackoverflow.com/questions/33037116/how-to-map-an-objects-keys-to-make-json-easier-to-handle-in-react
   }
 
   render() {
