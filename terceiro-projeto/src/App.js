@@ -22,31 +22,42 @@ class App extends Component {
       bla: true,
       nome: "mariana",
       bc: [],
+      atualizado: true,
     }
   }
 
   getCall () {
     axios.get('http://localhost:5000/')
-      .then(response => this.setState({bc: response.data}))
-  }
+      .then(
+        response => this.setState(
+          {bc: response.data,
+          atualizado: true,}
+      )
+    )
+  }x
 
   putCall () {
-    axios.put('http://localhost:5000/blockchain/closeblock')
+    axios.put('http://localhost:5000/blockchain/closeblock') // TODO pedir pra retornar os blocos
       .then(
-        response => this.setState({bc: response.data})
-      )  // TODO AJEITAR ISSO
+        response => this.setState(
+          console.log("ok"),
+          this.setState({
+            atualizado: false,
+          })
+        )
+      )
   }
 
+  // TODO FAZER FUNAO PRA LISTAR OS BLOCOS
+
   render() {
-    const nome = this.state.nome;
-    const cond = this.state.bla;
     const items = this.state.bc;
+    this.getCall();
     
     return (
       <div className="App">
-        <Botao onClick={() => this.getCall()} mensagem="clica"/>
         <Botao onClick={() => this.putCall()} mensagem="clica put"/>
-          {cond && <div>{nome}</div>}
+        {!this.state.atualizado && <Botao onClick={() => this.getCall()} mensagem="atualizar"/>}
         <ul>
           {items.map(item => <li>{item.index}</li>)} {/* VER COMO FUNCIONA ESSES INDICES */}
         </ul>
