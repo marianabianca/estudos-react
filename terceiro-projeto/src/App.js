@@ -40,16 +40,12 @@ class App extends Component {
   }
 
   postCall (obj) {
-    axios.post('http://localhost:81/blockchain/',
-        { "sender": obj.sender,
-          "receiver": obj.receiver,
-          "amount": obj.amount }
-      )
+    axios.post('http://localhost:81/blockchain', obj)
       .then(
         response => this.setState(
             {atualizado: false}
         )
-      )
+      )  
   }
 
   render() {
@@ -58,7 +54,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="container">
-          <FormPost handleSubmit={() => this.postCall()}/>
+          <FormPost submit={(valores) => this.postCall(valores)}/>
 
           <BotaoAmarelo onClick={() => this.putCall()} mensagem="Close block"/>
 
