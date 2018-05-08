@@ -16,3 +16,16 @@ body {
 .margem-topo {
   margin-top: 20px;
 }
+
+.margem-bottom {
+  margin-bottom: 10px;
+}
+
+.botao-largo {
+  width: 100%;
+}
+
+.margem-botao-verde {
+  margin-bottom: -10px;
+  margin-top: 20px;
+}
